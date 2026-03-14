@@ -1,0 +1,73 @@
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--page-bg: #f1f5f9;
+	--ink: #0f172a;
+	--muted: #64748b;
+	--ok: #166534;
+	--ok-bg: #f0fdf4;
+	--warn: #9a3412;
+	--warn-bg: #fff7ed;
+	--info: #155e75;
+	--info-bg: #ecfeff;
+	--error: #991b1b;
+	--error-bg: #fef2f2;
+}
+
+html,
+body {
+	margin: 0;
+	min-height: 100%;
+	font-family: "Manrope", sans-serif;
+	background-color: var(--page-bg);
+	color: var(--ink);
+}
+
+.ambient-bg {
+	position: fixed;
+	inset: -10% -10% auto -10%;
+	height: 68vh;
+	z-index: -1;
+	background:
+		radial-gradient(circle at 16% 20%, rgba(34, 211, 238, 0.28), transparent 40%),
+		radial-gradient(circle at 78% 28%, rgba(56, 189, 248, 0.24), transparent 44%),
+		radial-gradient(circle at 50% 70%, rgba(129, 140, 248, 0.18), transparent 55%);
+	filter: blur(12px);
+}
+
+.status-pill {
+	transition: all 300ms ease;
+}
+
+.status-info {
+	border-color: rgba(8, 145, 178, 0.22);
+	color: var(--info);
+	background: var(--info-bg);
+}
+
+.status-success {
+	border-color: rgba(22, 163, 74, 0.2);
+	color: var(--ok);
+	background: var(--ok-bg);
+}
+
+.status-warning {
+	border-color: rgba(249, 115, 22, 0.24);
+	color: var(--warn);
+	background: var(--warn-bg);
+}
+
+.status-error {
+	border-color: rgba(220, 38, 38, 0.2);
+	color: var(--error);
+	background: var(--error-bg);
+}
+
+@media (max-width: 480px) {
+	.ambient-bg {
+		inset: -20% -20% auto -20%;
+		height: 55vh;
+	}
+}

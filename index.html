@@ -1,21 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClipMaker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/index.css">
 </head>
 
-<body>
-  <h1>ClipMaker</h1>
-  <input id="apiKey" type="text" placeholder="Coloque sua chave de API do GEMINI">
-  <button id="uploadWidget" class="cloudinary-button">Upload files</button>
-  <p id="status"></p>
-  <video id="video" controls></video>
-  
-  <script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>  
-  <script type="text/javascript" src="scripts/upload-widget.js"></script>
+<body class="bg-slate-100 text-slate-900 antialiased">
+  <div class="ambient-bg" aria-hidden="true"></div>
 
+  <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8">
+    <nav class="mx-auto flex w-full max-w-7xl items-center justify-between rounded-2xl border border-white/50 bg-white/50 px-5 py-4 backdrop-blur-md shadow-[0_8px_28px_rgba(15,23,42,0.08)] md:px-8">
+      <div class="flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-cyan-400 via-sky-500 to-indigo-500 text-white shadow-sm">
+          <i data-lucide="sparkles" class="h-5 w-5"></i>
+        </span>
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">NLW ClipMaker</p>
+          <p class="text-lg font-bold tracking-tight text-slate-900">Recortes virais em segundos</p>
+        </div>
+      </div>
+      <a href="#studio" class="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition duration-300 hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-sky-300">
+        Abrir estúdio
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="relative overflow-hidden px-4 pb-24 pt-36 md:px-8 md:pb-32 md:pt-44">
+      <div class="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div class="reveal-up space-y-8">
+          <span class="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-700">
+            <i data-lucide="zap" class="h-4 w-4"></i>
+            IA + Cloudinary + Gemini
+          </span>
+          <div class="space-y-5">
+            <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">Transforme vídeos longos em cortes prontos para viralizar.</h1>
+            <p class="max-w-2xl text-base leading-relaxed text-slate-500 md:text-lg">
+              Faça upload, analise a transcrição com IA e receba automaticamente o melhor trecho entre 30 e 60 segundos em um fluxo simples, rápido e elegante.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-4 text-sm font-medium text-slate-600">
+            <div class="inline-flex items-center gap-2 rounded-xl bg-white/80 px-4 py-3 shadow-sm">
+              <i data-lucide="clock-3" class="h-4 w-4 text-cyan-500"></i>
+              Pipeline automatizado
+            </div>
+            <div class="inline-flex items-center gap-2 rounded-xl bg-white/80 px-4 py-3 shadow-sm">
+              <i data-lucide="scissors" class="h-4 w-4 text-indigo-500"></i>
+              Saida em MP4
+            </div>
+            <div class="inline-flex items-center gap-2 rounded-xl bg-white/80 px-4 py-3 shadow-sm">
+              <i data-lucide="shield-check" class="h-4 w-4 text-emerald-500"></i>
+              Controle por API Key
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-up rounded-3xl border border-white/60 bg-white/70 p-6 shadow-[0_12px_48px_rgba(15,23,42,0.12)] backdrop-blur-sm md:p-8">
+          <div class="space-y-6" id="studio">
+            <div class="space-y-2">
+              <h2 class="text-2xl font-bold tracking-tight text-slate-900">Seu estúdio de recortes</h2>
+              <p class="text-sm text-slate-500">Insira sua chave do Gemini, envie o vídeo e aguarde o melhor momento ser montado.</p>
+            </div>
+
+            <label class="space-y-2" for="apiKey">
+              <span class="text-sm font-semibold text-slate-700">Chave da API Gemini</span>
+              <input
+                id="apiKey"
+                type="password"
+                autocomplete="off"
+                placeholder="Cole sua chave com seguranca"
+                class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 shadow-sm transition duration-300 focus:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-200"
+              >
+            </label>
+
+            <button
+              id="uploadWidget"
+              class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition duration-300 hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-slate-400"
+            >
+              <i data-lucide="upload" class="h-4 w-4"></i>
+              Enviar vídeo para processamento
+            </button>
+
+            <p id="status" class="status-pill min-h-10 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
+              Pronto para receber seu vídeo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-24 md:px-8 md:py-28">
+      <div class="mx-auto grid w-full max-w-7xl gap-5 md:grid-cols-4 md:grid-rows-2">
+        <article class="reveal-up rounded-3xl border border-slate-200/80 bg-white p-7 shadow-sm transition duration-300 hover:scale-[1.02] hover:shadow-xl md:col-span-2 md:row-span-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold tracking-tight text-slate-900">Preview do recorte final</h3>
+            <i data-lucide="play-circle" class="h-6 w-6 text-sky-500"></i>
+          </div>
+          <p class="mt-3 text-sm text-slate-500">Assim que a IA terminar a analise, seu video aparecera aqui com controles nativos para revisar antes de publicar.</p>
+          <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-slate-950/90 p-2">
+            <video id="video" controls class="aspect-video w-full rounded-xl bg-black"></video>
+          </div>
+          <button
+            id="downloadViral"
+            type="button"
+            disabled
+            class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition duration-300 hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-sky-200 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            <i data-lucide="download" class="h-4 w-4"></i>
+            Baixar
+          </button>
+        </article>
+
+        <article class="reveal-up rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:scale-[1.02] hover:shadow-xl md:col-span-2">
+          <div class="flex items-center gap-3">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-cyan-50 text-cyan-600">
+              <i data-lucide="audio-lines" class="h-5 w-5"></i>
+            </span>
+            <div>
+              <h3 class="text-lg font-bold tracking-tight text-slate-900">Transcricao inteligente</h3>
+              <p class="text-sm text-slate-500">Busca automatica da transcricao ate ficar disponivel.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="reveal-up rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:scale-[1.02] hover:shadow-xl md:col-span-1">
+          <h3 class="text-lg font-bold tracking-tight text-slate-900">Tempo ideal</h3>
+          <p class="mt-2 text-sm text-slate-500">Seleciona janela entre 30 e 60 segundos para maior retenção.</p>
+        </article>
+
+        <article class="reveal-up rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:scale-[1.02] hover:shadow-xl md:col-span-1">
+          <h3 class="text-lg font-bold tracking-tight text-slate-900">Pronto para rede social</h3>
+          <p class="mt-2 text-sm text-slate-500">Retorna URL em formato mp4 para usar direto em qualquer plataforma.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>
+  <script type="text/javascript" src="scripts/upload-widget.js"></script>
 </body>
 </html>
