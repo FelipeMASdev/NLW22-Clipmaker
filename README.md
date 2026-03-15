@@ -6,12 +6,12 @@ Aplicação web desenvolvida duranto a NLW para transformar vídeos longos em co
 
 O projeto foi pensado como peça de portfólio para demonstrar integração com IA e consumo de APIs externas, além da construção de uma interface moderna usando HTML, CSS e JavaScript puro.
 
-**Felipe Mendes**  
+## Felipe Mendes
 Desenvolvedor Full Stack Júnior
 
 [![Portfólio](https://img.shields.io/badge/Portf%C3%B3lio-Acessar-111827?style=for-the-badge&logo=google-chrome&logoColor=white)](https://felipemasdev.github.io/Portfolio-Dev/)
 
-## Contato
+**Contato** 
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/felipe-mendes-a-s-dev/)
 
@@ -19,8 +19,7 @@ Desenvolvedor Full Stack Júnior
 
 ## Preview
 
-![Preview da interface](assets/preview.png) ![Preview da interface mobile](assets/previewMobile.png)
-
+![Preview da interface](assets/preview.png)
 
 ## Sobre o projeto
 
@@ -47,12 +46,12 @@ Este fluxo foi desenhado para demonstrar:
 
 - HTML5
 - CSS3
-- Tailwind CSS via CDN
 - JavaScript Vanilla
-- Lucide Icons
-- GSAP
+- Tailwind CSS via CDN
 - Cloudinary Upload Widget
 - Gemini API
+- Lucide Icons
+- GSAP
 
 ## Fluxo da aplicação
 
@@ -65,7 +64,7 @@ Este fluxo foi desenhado para demonstrar:
 
 ## Como executar
 
-
+https://felipemasdev.github.io/NLW22-Clipmaker/
 
 ## Atenção
 
